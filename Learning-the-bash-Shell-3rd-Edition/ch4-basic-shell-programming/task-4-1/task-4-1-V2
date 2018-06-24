@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# First, we can add comments to the code; anything between # and the end of a line is a comemnt.
+# At a minimum, the script should start with a few comment lines that indicate what the
+# script does and what arguments it acceps. Second, we can improve the varibale names by
+# assigning the values of the positional parameters to regular variables with mnemonic names.
+# Finally, we can add blank lines to spece things out; blank lines, like comments, are ignored.
+# Here is a more readable version:
+
+#
+#        highest filename [howmany]
+#
+#        Print howmany highest-numebred lines in file filename.
+#        The input file is assumed to have lines that start with numbers.
+#        Default for howmany is 10.
+
+filename=$1
+howmany=${2:-10}
+
+sort -nr $filename | head -$howmany
+
+
