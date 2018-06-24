@@ -1,0 +1,31 @@
+#!/bin/bash
+
+sort -nr $1 | head -${2:-10}
+
+# the sort program sorts the data in the file whose name is given at the first arguemnt ($1)
+# The -n option tells sort to interpret the first word on each line as a number
+# instead of as a character string); the -r tell it to reverse the comparison, so
+# as to sort in descending order.
+
+# The output of sort is piped into the head utility, which when givcen the argument - N,
+# prints the first N lines of its input on the standard output. The expression ${2:-10}
+# evaluates to a dash (-) followed by the second arguement if it is given, or to -10 it it's not.
+# Notice that the variable in this expression is 2, wich is the second positional parameter.
+
+# Assume the script we want to write is called highest. Then if the user types highest myfile, 
+# the line that actually runs is:
+
+# sort -nr myfile | head -10
+
+# Or if the user types highest myfile 22, the line that runs is:
+
+# sort -nr myfile | head -22
+
+# Make sure you understand how the :- string operator provides a defualt value.
+
+# This is a perfectly good, runnable script--but it has a few problems. First, its one lien is
+# a bit cryptic. While this isn't much of a problem for such a tiny script, it's not wise
+# to write a long elaborate script in this manner. A few minor changes will make the code
+# more readable.
+
+# Refer to https:// for more readable version.
