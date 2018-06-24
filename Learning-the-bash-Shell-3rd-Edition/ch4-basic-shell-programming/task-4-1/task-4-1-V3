@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Therefore we need to make sure that the user supplies at least one argument. There are
+# a few ways of doing this; of them involves another string operator.
+# We'll replace the line:
+
+# filename=$1
+
+# with:
+
+# filename=${1:?"filename missing."}
+
+# This will cause two things to happen if a user invokes the script without any arguments: first the
+# shell will print somewhat unfortunate message:
+
+# highest: 1: filename missing.
+
+# to the standar error output. Second, the script will exist without running the remaining code.
+# With a somewhat "kludgy" modification, we can get slightly better erroe message.
+
+# Consider this code:
+
+filename=$1
+filename=${filename:?"missing."}
+howmany=${2:-10}
+
+sort -nr $filename | head -$howmany
+
+# This results in the message:
+
+# highest: filename: missing.
+
+# (Make sure you understand why.) Of course, there are ways of printing whatever message is desired; we'll
+# fidn out in Chapter 5.
