@@ -19,4 +19,22 @@ howmany=${2:-10}
 
 sort -nr $filename | head -$howmany
 
+# The square brackets around howmany in the commands adhere to the conversion in UNIX documentaion
+# that square brackets denote optional arguments.
 
+# The changes we just made improve the code's readability but not how it runs. What if the user were
+# to invoke the script without any arguments? Remember that positional parameters default to null
+# if they aren't defined. If there are not arguments, then $1 and $2 are both null. The variable
+# howmany ($2) is set up to default to 10, but there is no default for filename ($1). The result
+# would be that this command runs:
+
+# sort -nr | head -10
+
+# As it happens, if sort is called without a filename argument, it expects imputs to come from standard
+# input, e.g., a pipe (|) or a user's terminal. Since it doesn't have the pip, it will expect the
+# terminal. Thsi means that the script will appear to hang! Although you could always hit CTRl-D or
+# CTRL-C to get out of the script, a naive user might not know this.
+
+# Therefore we need to make sure that the user supplies at least one argument. 
+
+# Refer to https:// for this version.
