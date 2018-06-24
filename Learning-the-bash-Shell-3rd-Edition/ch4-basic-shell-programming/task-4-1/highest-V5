@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# The :+ operator substitutes a value if the given variable exists and isn't null.
+# Here is how we can use it in our example: let's say 
