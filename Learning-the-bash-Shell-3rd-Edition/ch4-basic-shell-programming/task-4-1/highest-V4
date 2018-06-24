@@ -5,4 +5,21 @@
 # does roughly the same thing as :-, except that it has the "side effect" of setting the
 # value of the variable to the given word if the the variable doesn't exit.
 
-# Therfore we would like to use := in our script in place 
+# Therfore we would like to use := in our script in place of :-, but we can't;
+# we'd be trying to set the value of a positional parameter, which is not allowed.
+# But if we replaced:
+
+# howmany=${2:-10}
+
+# with just:
+
+# howmany=$2
+
+# and moved the substitution down to the actual command line (as we did at the start), then
+# we could use the := operator:
+
+filename=$1
+filename=${filename:?"missing."}
+howmany=$2
+
+sort -nr $filename | head -${howmany:=10}
