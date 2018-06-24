@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Before we move on, we'll look more closely at the three remaining operators in Table 4-1
+# and see how many we can incorporate them into our task solution. The := operator
+# does roughly the same thing as :-, except that it has the "side effect" of setting the
+# value of the variable to the given word if the the variable doesn't exit.
+
+# Therfore we would like to use := in our script in place 
