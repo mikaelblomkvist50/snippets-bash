@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# We can modify the listpath script to check the PATH variable for
+# nonexistent directories by adding some of the tests we saw earlier:
+
+IFS=:
+
+for dir in $PATH; do
+    if [ -z "$dir" ]; then dir=.; fi
+
+    if ! [ -e "$dir" ]; then
+        echo "$dir doesn't exist"
+    elif ! [ -d "$dir" ]; then
+        echo "$dir ins't a directory"
+    else
+         ls -ld $dir
+    fi
+done
+
+# This time, as the script loops, we first check to see if the length of $dir is zero
+# (caused by having a value of :: in the PATH). If it is, we set it to the current directory,
+# then check to see if the directory doesn't exist. If it doesn't , we print out an
+# appropriate message. Otherwise, we check to see if the file is not a directory. If it isn't,
+# we say so.
